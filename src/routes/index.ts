@@ -1,8 +1,8 @@
 import { Router } from 'express'
 import { UserRoutes } from './UserRoutes'
 
-const Routes = Router()
+const routes = Router()
 
-Routes.use(UserRoutes)
+routes.use(UserRoutes)
 
-export default Routes
+export default routes
