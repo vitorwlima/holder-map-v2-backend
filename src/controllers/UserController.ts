@@ -10,7 +10,7 @@ export class UserController {
 
     const userAlreadyExists = await UserModel.findOne({ email })
     if (userAlreadyExists) {
-      throw new Error('Usuário já cadastrado.')
+      throw new Error('Email já cadastrado.')
     }
 
     const passwordHash = await hash(password, 8)
