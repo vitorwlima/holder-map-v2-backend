@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { compare, hash } from 'bcryptjs'
 
-import { UserModel } from '../models'
-import { generateAccessToken } from '../utils/TokenGenerator'
+import { RefreshTokenModel, UserModel } from '../models'
+import { generateAccessToken, generateRefreshToken } from '../utils/TokenGenerator'
 
 export class UserController {
   async register(request: Request, response: Response) {
@@ -16,7 +16,10 @@ export class UserController {
     const passwordHash = await hash(password, 8)
     const user = await new UserModel({ name, email, password: passwordHash }).save()
 
-    return response.json(user)
+    const token = generateAccessToken(user._id)
+    const refreshToken = await generateRefreshToken(user._id)
+
+    return response.json({ user, token })
   }
 
   async login(request: Request, response: Response) {
@@ -32,7 +35,10 @@ export class UserController {
       throw new Error('Senha incorreta.')
     }
 
+    await RefreshTokenModel.deleteMany({ userId: user._id })
+
     const token = generateAccessToken(user._id)
+    const refreshToken = await generateRefreshToken(user._id)
 
     return response.json({ user, token })
   }
