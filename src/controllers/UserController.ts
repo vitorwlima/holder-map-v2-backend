@@ -19,6 +19,8 @@ export class UserController {
     const token = generateAccessToken(user._id)
     const refreshToken = await generateRefreshToken(user._id)
 
+    response.cookie('@NASDAQ-refresh', refreshToken._id.toString(), { httpOnly: true })
+
     return response.json({ user, token })
   }
 
@@ -39,6 +41,8 @@ export class UserController {
 
     const token = generateAccessToken(user._id)
     const refreshToken = await generateRefreshToken(user._id)
+
+    response.cookie('@NASDAQ-refresh', refreshToken._id.toString(), { httpOnly: true })
 
     return response.json({ user, token })
   }

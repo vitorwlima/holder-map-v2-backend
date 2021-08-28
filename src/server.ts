@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import express from 'express'
+import cookieParser from 'cookie-parser'
 import 'reflect-metadata'
 import 'express-async-errors'
 dotenv.config()
@@ -10,6 +11,7 @@ import { handleError } from './middlewares'
 
 const app = express()
 
+app.use(cookieParser())
 app.use(express.json())
 app.use(routes)
 app.use(handleError)
