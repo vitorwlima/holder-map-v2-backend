@@ -6,3 +6,4 @@ const userController = new UserController()
 
 UserRoutes.post('/register', userController.register)
 UserRoutes.post('/login', userController.login)
+UserRoutes.get('/refresh-token', userController.authenticateByRefresh)
