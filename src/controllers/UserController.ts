@@ -72,4 +72,9 @@ export class UserController {
 
     return response.json({ user, token })
   }
+
+  async logout(request: Request, response: Response) {
+    response.cookie('@NASDAQ-refresh', '', { httpOnly: true })
+    return response.end()
+  }
 }
