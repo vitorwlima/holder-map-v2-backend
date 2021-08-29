@@ -27,4 +27,46 @@ export class CompaniesController {
 
     return response.json({ user, token })
   }
+
+  async addFavoriteCompany(request: Request, response: Response) {
+    const { user_id } = request
+    const { quote } = request.body
+
+    const user = await UserModel.findById(user_id)
+    if (!user) {
+      throw new Error('Usuário não encontrado.')
+    }
+
+    if (user.favoriteCompanies.includes(quote)) {
+      return response.end()
+    }
+
+    user.favoriteCompanies.push(quote)
+    await user.save()
+
+    const token = generateAccessToken(user._id)
+
+    return response.json({ user, token })
+  }
+
+  async removeFavoriteCompany(request: Request, response: Response) {
+    const { user_id } = request
+    const { quote } = request.params
+
+    const user = await UserModel.findById(user_id)
+    if (!user) {
+      throw new Error('Usuário não encontrado.')
+    }
+
+    if (!user.favoriteCompanies.includes(quote)) {
+      return response.end()
+    }
+
+    user.favoriteCompanies = user.favoriteCompanies.filter(company => company !== quote)
+    await user.save()
+
+    const token = generateAccessToken(user._id)
+
+    return response.json({ user, token })
+  }
 }
