@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "allowJs": false,
     "strict": true,
     "strictPropertyInitialization": false,
     "typeRoots": ["./src/@types"],
