@@ -15,6 +15,10 @@ export class CompaniesController {
       user.recentCompanies.shift()
     }
 
+    if (user.recentCompanies.includes(quote)) {
+      user.recentCompanies = user.recentCompanies.filter(item => item !== quote)
+    }
+
     user.recentCompanies.push(quote)
     await user.save()
 
