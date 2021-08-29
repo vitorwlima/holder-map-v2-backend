@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { RefreshTokenModel, UserModel } from '../models'
 
 export const generateAccessToken = (userId: Schema.Types.ObjectId) => {
-  const accessToken = sign({}, process.env.TOKEN_HASH!, { subject: userId.toString(), expiresIn: '15m' })
+  const accessToken = sign({}, process.env.TOKEN_HASH!, { subject: userId.toString(), expiresIn: '1h' })
   return accessToken
 }
 
