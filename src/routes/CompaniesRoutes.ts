@@ -1,7 +1,8 @@
 import { Router } from 'express'
 import { CompaniesController } from '../controllers/CompaniesController'
+import { ensureAuthenticated } from '../middlewares'
 
 export const CompaniesRoutes = Router()
 const companiesController = new CompaniesController()
 
-CompaniesRoutes.post('/recent-company', companiesController.registerRecentCompany)
+CompaniesRoutes.post('/recent-company', ensureAuthenticated, companiesController.registerRecentCompany)

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { UserModel } from '../models'
+import { generateAccessToken } from '../utils/TokenGenerator'
 
 export class CompaniesController {
   async registerRecentCompany(request: Request, response: Response) {
@@ -12,16 +13,18 @@ export class CompaniesController {
     }
 
     if (user.recentCompanies.length >= 10) {
-      user.recentCompanies.shift()
+      user.recentCompanies.pop()
     }
 
     if (user.recentCompanies.includes(quote)) {
       user.recentCompanies = user.recentCompanies.filter(item => item !== quote)
     }
 
-    user.recentCompanies.push(quote)
+    user.recentCompanies.unshift(quote)
     await user.save()
 
-    return response.end()
+    const token = generateAccessToken(user._id)
+
+    return response.json({ user, token })
   }
 }
