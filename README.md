@@ -4,7 +4,7 @@
 Acesse a versão hospedada na heroku por aqui: https://nasdaq-map.herokuapp.com/
 
 ## Sobre o projeto
-Nasdaq Map é uma aplicação feita para verificar e acompanhar ações da bolsa Nasdaq. A parte do servidor, feita em NodeJS com Express, constitui uma API para criar e autenticar usuários, além de salvar informações de suas empresas recentes e favoritas. O sistema de autenticação é feito com um JWT com tempo de expiração de 1h, e um refresh token com expiração de 7 dias. Esse último é o responsável por manter o usuário autenticado mesmo depois de desconectar, fazendo isso por meio de um cookie HTTP-only para impedir ataques maliciosos aos usuários. Quanto ao banco de dados, o utilizado é o MongoDB com mongoose.
+Nasdaq Map é uma aplicação feita para verificar e acompanhar ações da bolsa Nasdaq. A parte do servidor, feita em NodeJS com Express, constitui uma API para criar e autenticar usuários, além de salvar informações de suas empresas recentes e favoritas. O sistema de autenticação é feito por meio de um JWT com tempo de expiração de 1h, e um refresh token com expiração de 7 dias. Esse último é o responsável por manter o usuário autenticado mesmo depois de desconectar, fazendo isso por meio de um cookie HTTP-only para impedir ataques maliciosos aos usuários. Quanto ao banco de dados, o utilizado é o MongoDB com mongoose.
 
 ## Como rodar o projeto
 
