@@ -4,7 +4,7 @@
     "module": "commonjs",
     "strict": true,
     "strictPropertyInitialization": false,
-    "typeRoots": ["./src/@types", "./node_modules/@types"],
+    "typeRoots": ["./src/@types"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
