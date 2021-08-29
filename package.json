@@ -15,6 +15,7 @@
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.5",
     "@types/mongoose": "^5.11.97",
+    "@types/node": "*",
     "ts-node-dev": "^1.1.8"
   },
   "dependencies": {
